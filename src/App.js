@@ -3,17 +3,14 @@ import IndivExpense from "./components/IndivExpense";
 
 
 function App() {
-  let today = new Date()
+
   const data = {
     id: 1,
     title: "Keyb",
     amount: 2000.00,
-    date: today.toLocaleDateString("en-US", {
-      month:'long', 
-      day:'numeric',
-      year: 'numeric'
-  })
+    date: new Date()
   }
+
 
   return (
     <div>

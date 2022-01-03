@@ -1,6 +1,6 @@
-import react from "react";
+import React from "react";
 
-function Date(props){
+function ExpenseDate(props){
     const month = props.date.toLocaleString('en-US', {month: 'long'});
     const day = props.date.toLocaleString('en-US', {day: '2-digit'});
     const year = props.date.getFullYear();
@@ -14,4 +14,4 @@ function Date(props){
     )
 }
 
-export default Date;
+export default ExpenseDate;

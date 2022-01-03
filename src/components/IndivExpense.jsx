@@ -1,6 +1,6 @@
 import React from "react";
 import "./IndivExpense.css";
-import Date from "./Date";
+import Date from "./ExpenseDate";
 
 
 function IndivExpense(props){

@@ -4,6 +4,10 @@ import Date from "./ExpenseDate";
 
 
 function IndivExpense(props){
+    function onClickHandler(){
+        console.log("this")
+    }
+
     return (
         <div className="indiv-expense">
             <Date date={props.date} />
@@ -11,6 +15,7 @@ function IndivExpense(props){
             <div className="indiv-expense-desc">
                 <h6> Php {props.amount} </h6>
             </div>
+            <button onClick={onClickHandler}> Lorem Ipsum </button>
         </div>
     )
 }

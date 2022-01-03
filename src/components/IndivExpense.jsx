@@ -1,18 +1,12 @@
 import React from "react";
 import "./IndivExpense.css";
+import Date from "./Date";
+
 
 function IndivExpense(props){
-    const month = props.date.toLocaleString('en-US', {month: 'long'});
-    const day = props.date.toLocaleString('en-US', {day: '2-digit'});
-    const year = props.date.getFullYear();
-
     return (
         <div className="indiv-expense">
-            <div>
-                <h3> {month} </h3>
-                <h3> {day} </h3>
-                <h3> {year} </h3>
-            </div>
+            <Date date={props.date} />
             <h2> {props.title} </h2>
             <div className="indiv-expense-desc">
                 <h6> Php {props.amount} </h6>

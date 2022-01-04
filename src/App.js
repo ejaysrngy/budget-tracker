@@ -1,6 +1,7 @@
 import React from "react";
 import IndivExpense from "./components/IndivExpense";
 import "./App.css";
+import NewExpense from "./components/NewExpense";
 
 function App() {
 
@@ -14,8 +15,11 @@ function App() {
 
   return (
     <div>
-      <h2>Let's get started!</h2>
       <div className="expense-container">
+        <div className="new-expense-container">
+          <NewExpense />
+        </div>
+
         <IndivExpense 
           title={data.title}
           amount={data.amount}

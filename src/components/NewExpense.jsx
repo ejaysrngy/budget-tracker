@@ -13,23 +13,39 @@ function NewExpense() {
   });
 
   function titleChangeHandler(event) {
-    setUserInput({
-        ...userInput,
-        newTitle: event.target.value
+    setUserInput((prevState) => {
+      return { ...prevState, newTitle: event.target.value };
     });
   }
 
   function amountChangeHandler(event) {
-    setUserInput(event.target.value);
+    setUserInput((prevState) => {
+      return { ...prevState, newAmount: event.target.value };
+    });
   }
 
   function dateChangeHandler(event) {
-    setUserInput(event.target.value);
+    setUserInput((prevState) => {
+      return { ...prevState, newDate: event.target.value };
+    });
   }
+
+  function submitHandler(event){
+    event.preventDefault();
+
+    const expenseData = {
+      title: userInput.newTitle,
+      amount: userInput.newAmount,
+      date: new Date(userInput.newDate)
+    }
+
+    console.log(expenseData)
+  }
+
 
   return (
     <div className="new-expense">
-      <form>
+      <form onSubmit={submitHandler}>
         <div className="new-expense-controls">
           <div className="new-expense-control">
             <label> Title </label>

@@ -12,15 +12,23 @@ function App() {
     date: new Date()
   }
 
+  function saveNewExpenseHandler(data){
+    console.log({
+      ...data,
+      id: Math.random().toString()
+    })
+  }
 
   return (
     <div>
       <div className="expense-container">
         <div className="new-expense-container">
-          <NewExpense />
+          <NewExpense onSaveNewExpense={saveNewExpenseHandler}/>
         </div>
 
-        <IndivExpense 
+        {/* Map out IndivExpense */}
+
+        {/* <IndivExpense 
           title={data.title}
           amount={data.amount}
           date={data.date}
@@ -39,7 +47,7 @@ function App() {
           title={data.title}
           amount={data.amount}
           date={data.date}
-        />
+        /> */}
       </div>
     </div>
   );

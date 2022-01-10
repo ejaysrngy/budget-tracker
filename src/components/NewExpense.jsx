@@ -77,7 +77,7 @@ function NewExpense(props) {
               onChange={(event) => dateChangeHandler(event)}
               value={userInput.newDate}
               type="date"
-              min="2022-04-01"
+              min="2019-01-01"
               max="2022-31-12"
             />
           </div>

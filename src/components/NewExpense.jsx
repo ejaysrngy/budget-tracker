@@ -5,12 +5,21 @@ function NewExpense(props) {
   // const [newTitle, setNewTitle] = useState("")
   // const [newAmount, setNewAmount] = useState("")
   // const [newDate, setNewDate] = useState("")
+  const [isEditing, setIsEditing] = React.useState(false);
 
   const [userInput, setUserInput] = useState({
     newTitle: "",
     newAmount: "",
     newDate: "",
   });
+
+  function isEditingHandler() {
+    setIsEditing(true);
+  }
+
+  function cancelEditingHandler(){
+    setIsEditing(false);
+  }
 
   function titleChangeHandler(event) {
     setUserInput((prevState) => {
@@ -30,62 +39,65 @@ function NewExpense(props) {
     });
   }
 
-  function submitHandler(event){
+  function submitHandler(event) {
     event.preventDefault();
 
     const expenseData = {
       title: userInput.newTitle,
       amount: userInput.newAmount,
-      date: new Date(userInput.newDate)
-    }
+      date: new Date(userInput.newDate),
+    };
 
-    props.onSaveNewExpense(expenseData)
+    props.onSaveNewExpense(expenseData);
 
     setUserInput({
       newTitle: "",
       newAmount: "",
-      newDate: ""
-    })
+      newDate: "",
+    });
   }
-
 
   return (
     <div className="new-expense">
-      <form onSubmit={submitHandler}>
-        <div className="new-expense-controls">
-          <div className="new-expense-control">
-            <label> Title </label>
-            <input
-              onChange={(event) => titleChangeHandler(event)}
-              value={userInput.newTitle}
-              type="text"
-            />
+      {isEditing && (
+        <form onSubmit={submitHandler}>
+          <div className="new-expense-controls">
+            <div className="new-expense-control">
+              <label> Title </label>
+              <input
+                onChange={(event) => titleChangeHandler(event)}
+                value={userInput.newTitle}
+                type="text"
+              />
+            </div>
+            <div className="new-expense-control">
+              <label> Amount </label>
+              <input
+                onChange={(event) => amountChangeHandler(event)}
+                value={userInput.newAmount}
+                type="number"
+                min="0.01"
+                step="0.01"
+              />
+            </div>
+            <div className="new-expense-control">
+              <label> Date </label>
+              <input
+                onChange={(event) => dateChangeHandler(event)}
+                value={userInput.newDate}
+                type="date"
+                min="2019-01-01"
+                max="2022-31-12"
+              />
+            </div>
           </div>
-          <div className="new-expense-control">
-            <label> Amount </label>
-            <input
-              onChange={(event) => amountChangeHandler(event)}
-              value={userInput.newAmount}
-              type="number"
-              min="0.01"
-              step="0.01"
-            />
+          <div className="new-expense-actions">
+            <button onClick={cancelEditingHandler}> Cancel </button>
+            <button type="submit"> Add Expense </button>
           </div>
-          <div className="new-expense-control">
-            <label> Date </label>
-            <input
-              onChange={(event) => dateChangeHandler(event)}
-              value={userInput.newDate}
-              type="date"
-              min="2019-01-01"
-              max="2022-31-12"
-            />
-          </div>
-        </div>
-        <div className="new-expense-actions">
-          <button type="submit"> Add Expense </button>
-        </div>
-      </form>
+        </form>
+      )}
+      {!isEditing && <button onClick={isEditingHandler}> Add Expense </button>}
     </div>
   );
 }

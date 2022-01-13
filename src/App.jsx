@@ -22,7 +22,6 @@ function App() {
     return expense.date.getFullYear().toString() === filteredYear;
   });
 
-  console.log(expenseList)
 
   return (
     <div>

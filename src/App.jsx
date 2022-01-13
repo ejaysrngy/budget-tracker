@@ -8,17 +8,6 @@ function App() {
   const [expenseList, setExpenseList] = React.useState([]);
   const [filteredYear, setFilteredYear] = React.useState("2020");
 
-  // const data = [
-  //   {
-  //     id: 1,
-  //     title: "Keyb",
-  //     amount: 2000.0,
-  //     date: new Date(),
-  //   },
-  //   { id: 1, title: "Keyb", amount: 2000.0, date: new Date() },
-  //   { id: 1, title: "Keyb", amount: 2000.0, date: new Date() },
-  // ];
-
   function onChangeYearHandler(year) {
     setFilteredYear(year);
   }
@@ -33,6 +22,8 @@ function App() {
     return expense.date.getFullYear().toString() === filteredYear;
   });
 
+  console.log(expenseList)
+
   return (
     <div>
       <div className="expense-container__new">
@@ -43,15 +34,26 @@ function App() {
       <div className="expense-container__body">
         <div className="expense-year__filter">
           <ExpenseYear
+            declaredYears={expenseList}
             onChangeFilter={onChangeYearHandler}
             value={filteredYear}
           />
         </div>
         <div>
-          {filteredExpense.length === 0 ? (
+          {expenseList.length === 0 ? (
             <h1 className="empty-placeholder"> No expenses </h1>
-          ) : (
+          ) : filteredYear !== "Show All" ? (
             filteredExpense.map((item, index) => (
+              <IndivExpense
+                key={index}
+                id={index}
+                title={item.title}
+                amount={item.amount}
+                date={item.date}
+              />
+            ))
+          ) : (
+            expenseList.map((item, index) => (
               <IndivExpense
                 key={index}
                 id={index}
